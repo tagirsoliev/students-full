@@ -1,0 +1,135 @@
+.fontSize14 {
+    font-size: 14px;
+}
+
+header {
+    background-color: #dda15e;
+    padding: 5px;
+    height: 5vh;
+}
+
+.headerNav,
+header,
+.sorting,
+.main {
+    display: flex;
+    align-items: center;
+}
+
+button {
+    width: auto;
+    height: auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fefae0;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+button:hover {
+    color: #283618;
+}
+
+.select {
+    margin-left: 5px;
+    padding: 2px;
+    background-color: #fefae0;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.headerNav {
+    width: 30%;
+    justify-content: space-between;
+}
+
+.createNew {
+    margin-left: auto;
+}
+
+table caption {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main {
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+table {
+    border: 2px solid #283618;
+    border-spacing: 0;
+}
+
+th,
+td {
+    border: 1px solid #283618;
+    padding: 5px;
+    text-align: center;
+    width: auto;
+}
+
+thead {
+    font-size: 16px;
+}
+
+caption {
+    margin: 10px;
+}
+
+.dialogs {
+    /* Center dialog box */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    width: 50%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: auto;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.filtersInput{
+    display: flex;
+    flex-direction: column;
+}
+.inputForm{
+    border: 1px solid #283618;
+    border-radius: 4px;
+    width: 100%;
+}
+.labelForm{
+    font-size: 16px;
+    margin: 5px;
+    width: 50%;
+}
+dialog h2{
+    text-align: center;
+}
+dialog button{
+    width: fit-content;
+    background-color: #dda15e;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 30px;
+}
+dialog form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
+    align-items: center;
+}
