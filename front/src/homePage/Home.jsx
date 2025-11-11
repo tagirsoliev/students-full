@@ -1,6 +1,8 @@
 import { useState } from "react"
 import styles from './Home.module.css'
 import { useEffect } from "react"
+import getStudents from "../GetStudents"
+import postStudents from "../PostStudents"
 
 function Home() {
     const [dialogOpen, setDialogOpen] = useState(false)
@@ -11,7 +13,7 @@ function Home() {
         faculty: false
     })
     const [students, setStudents] = useState([
-        { name: 'Иван', surname: 'Иванов', patronymic: 'Иванович', birthDate: '2000-01-01', startYear: 2018, faculty: 'Физика' },
+        // { name: 'Иван', surname: 'Иванов', patronymic: 'Иванович', birthDate: '2000-01-01', startYear: 2018, faculty: 'Физика' },
     ])
     const [dialogCreate, setDialogCreate] = useState(false);
     const [newStudent, setNewStudent] = useState({
@@ -30,9 +32,24 @@ function Home() {
     })
     const [filteredStudents, setFilteredStudents] = useState([])
 
+
+    useEffect(() => {
+        awaitingGET()
+    }, [])
+
+    const awaitingGET = async () => {
+        const response = await getStudents()
+        setStudents(response)
+    }
+    const awaitingPOST = async (newStudent) => {
+        const response = await postStudents(newStudent)
+        console.log(response);
+    }
+    // awaitingPOST()
+
     useEffect(() => {
         setFilteredStudents(students)
-    }, [])
+    }, [students])
 
     const openDialog = () => {
         if (dialogOpen) {
@@ -55,7 +72,9 @@ function Home() {
     const createStudent = (e) => {
         e.preventDefault();
         if (validating()) {
-            setStudents([...students, newStudent]);
+            awaitingPOST(newStudent)
+            awaitingGET()
+            // setStudents([...students, newStudent]);
             setNewStudent({
                 name: '',
                 surname: '',
@@ -121,10 +140,17 @@ function Home() {
 
 
     const getCourse = (startYear) => {
-        if ((Number(startYear) + 4 < new Date().getFullYear()) || (Number(startYear) + 4 == new Date().getFullYear() && new Date().getMonth() > 9)) {
-            return ("Закончил")
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+
+        const endYear = Number(startYear) + 4;
+
+        if (currentYear > endYear || (currentYear === endYear && currentMonth >= 8)) { // >=8 = сентябрь
+            console.log(currentYear > endYear);
+            // console.log(currentYear === endYear && currentMonth >= 8);
+            return "Закончил";
         } else {
-            return `${(new Date().getFullYear() - Number(startYear))} курс`
+            return `${currentYear - Number(startYear)} курс`;
         }
     }
 
